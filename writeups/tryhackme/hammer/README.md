@@ -50,9 +50,8 @@ css                     [Status: 301, Size: 317, Words: 20, Lines: 10, Duration:
 :: Progress: [62281/62281] :: Job [1/1] :: 368 req/sec :: Duration: [0:03:07] :: Errors: 0 ::
 
 ```
-The results of the enumeration are the hmr_logs, hmr_images, hmr_css and hmr_js directories.
-`assets/enum.png`.<br>
-Visit directory hmr_logs and open error.logs<br>
+The results of the enumeration are the hmr_logs, hmr_images, hmr_css and hmr_js directories.<br>
+Visit directory hmr_logs and open error.logs `assets/hmr_logs.png`<br>
 ```text
 # error.logs
 [Mon Aug 19 12:01:22.987654 2024] [authz_core:error] [pid 12346:tid 139999999999998] [client 192.168.1.15:45918] AH01630: client denied by server configuration: /var/www/html/
