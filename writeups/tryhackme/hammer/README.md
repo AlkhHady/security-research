@@ -114,7 +114,7 @@ ffuf -w otp.txt:w1 -w otp.txt:w2 -mode pitchfork -X POST -d "recovery_code=w1&s=
 ```
 Use ffuf with two placeholders for X-Forwarded-For and otp using otp.txt<br>
 Ffuf uses a Pitchfork attack type because both placeholders will be tested simultaneously.<br>
-Use burp proxy to retrieve session cookies. Use ffuf instead of burp because in this case ffuf is faster than burp suite community `assets/fuzz_otp.png`<br><br>
+Use burp proxy to retrieve session cookies. Use ffuf instead of burp because in this case ffuf is faster than burp suite community<br><br>
 Receive OTP and reset password
 
 ## 6. Discover and Analysis Command Page
