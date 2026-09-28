@@ -202,7 +202,7 @@ prompt_container_id() {
 }
 ...
 ```
-And the result: ![id_rsa root](assets/root_id_rsa.png)
+![id_rsa root](assets/root_id_rsa.png)
 
 ### Shell
 After getting the roots id_rsa, the next step is to connect with ssh with the root user.
