@@ -158,7 +158,7 @@ think@ip-10-80-138-152:~$
 In the experiment, user think tried to create a file in his home directory but the permission was denied. So I can't add code to /opt/run_container.sh
 
 ## 6. Bypass AppArmor
-Because most directories and files on the system cannot be accessed, the delivery bypass code is done in the `/dev/shm` directory. Bypass apparmor by using perl code that runs a shell through an executable that is not affected by the AppArmor profile. [ByPass Code](assets/bypass.pl)
+Because most directories and files on the system cannot be accessed, the delivery bypass code is done in the `/dev/shm` directory. Bypass apparmor by using perl code that runs a shell through an executable that is not affected by the AppArmor profile. [ByPass Code](code/bypass.pl)
 ```perl
 #!/usr/bin/perl
 use POSIX qw(strftime);
