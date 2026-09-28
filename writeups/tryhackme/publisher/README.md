@@ -95,7 +95,7 @@ After visiting the login page, go to the forgot password/oubli page. ![Oubli Pag
 Use [exploit code](code/spipV2.py).
 ```bash
 # example. use the endpoint on the oubli page for url
-python3 spipV2 -u http://test -v
+python3 spipV2.py -u http://test -v
 ```
 exploit code requires pip installation with package [requirements](code/requirements.txt).
 
